@@ -1,0 +1,3 @@
+[submodule "content"]
+	path = content
+	url = https://github.com/shw1606/blog-content.git

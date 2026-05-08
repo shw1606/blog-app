@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo",
+    "Pretendard", "Noto Sans KR", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html {
+  font-feature-settings: "ss01", "ss02";
+}
+
+body {
+  background: #ffffff;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.prose {
+  max-width: 680px;
+}
+
+.prose,
+.prose a {
+  color: #1a1a1a;
+}
+
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
