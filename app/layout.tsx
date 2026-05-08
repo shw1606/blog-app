@@ -48,7 +48,7 @@ export default function RootLayout({
                 GitHub
               </a>
               <a
-                href="https://linkedin.com/in/PLACEHOLDER"
+                href="https://www.linkedin.com/in/hyunwoo-seo/"
                 className="hover:underline"
               >
                 LinkedIn
