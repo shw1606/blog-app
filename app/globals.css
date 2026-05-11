@@ -47,15 +47,15 @@ body {
   margin: 0;
 }
 
-.prose > h2 {
-  clear: left;
+/* First heading (h1/h2/h3) right after the floated hero image sits flush with the top */
+.prose > p:first-child:has(img) + :is(h1, h2, h3) {
+  margin-top: 0;
 }
 
-.prose > p:first-child:has(img) + h1,
-.prose > p:first-child:has(img) + h2,
-.prose > p:first-child:has(img) + h3 {
-  clear: none;
-  margin-top: 0;
+/* h2 sections after the first one break out of the float; the very first
+   h2 has no preceding h2 sibling so it stays inline with the hero image */
+.prose > h2 ~ h2 {
+  clear: left;
 }
 
 @media (max-width: 540px) {
