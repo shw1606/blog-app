@@ -47,12 +47,15 @@ body {
   margin: 0;
 }
 
-.prose > h1:first-of-type {
-  margin-top: 0;
-}
-
 .prose > h2 {
   clear: left;
+}
+
+.prose > p:first-child:has(img) + h1,
+.prose > p:first-child:has(img) + h2,
+.prose > p:first-child:has(img) + h3 {
+  clear: none;
+  margin-top: 0;
 }
 
 @media (max-width: 540px) {
