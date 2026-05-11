@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Drafts in submodule
 content/drafts/
+
+# Synced from content/ at build time (see scripts/sync-content-assets.mjs)
+/public/profile.jpg

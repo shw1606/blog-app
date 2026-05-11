@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "sync-content": "node scripts/sync-content-assets.mjs",
+    "dev": "pnpm sync-content && next dev",
+    "build": "pnpm sync-content && next build",
     "start": "next start",
     "lint": "eslint"
   },
