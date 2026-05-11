@@ -1,12 +1,18 @@
-// Copies media files from content/ (submodule) into public/ so Next.js
+// Copies media files from the content source into public/ so Next.js
 // can serve them as static assets. Runs before `next dev` and `next build`.
-// Mirrors directory structure: content/foo/bar.jpg → public/foo/bar.jpg.
+// Mirrors directory structure: <src>/foo/bar.jpg → public/foo/bar.jpg.
+//
+// Content source resolution (matches lib/content-dir.ts):
+//   - if ../blog-content exists (local dev with sibling clone), use it
+//   - otherwise fall back to ./content (the submodule, used on Vercel)
 import { readdir, mkdir, copyFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 
 const ROOT = process.cwd();
-const SRC_DIR = path.join(ROOT, "content");
+const STANDALONE = path.resolve(ROOT, "..", "blog-content");
+const SUBMODULE = path.join(ROOT, "content");
+const SRC_DIR = existsSync(STANDALONE) ? STANDALONE : SUBMODULE;
 const DST_DIR = path.join(ROOT, "public");
 
 const IMAGE_EXTS = new Set([
@@ -39,13 +45,13 @@ async function walk(dir, rel = "") {
       const dstPath = path.join(DST_DIR, relPath);
       await mkdir(path.dirname(dstPath), { recursive: true });
       await copyFile(srcPath, dstPath);
-      console.log(`[sync] content/${relPath} → public/${relPath}`);
+      console.log(`[sync] ${path.basename(SRC_DIR)}/${relPath} → public/${relPath}`);
     }
   }
 }
 
 if (!existsSync(SRC_DIR)) {
-  console.warn(`[sync] ${SRC_DIR} not found; submodule may not be initialized`);
+  console.warn(`[sync] ${SRC_DIR} not found; nothing to sync`);
   process.exit(0);
 }
 
