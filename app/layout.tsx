@@ -4,10 +4,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Seo Hnoo",
-    template: "%s — Seo Hnoo",
+    default: "Hyunwoo Seo",
+    template: "%s — Hyunwoo Seo",
   },
-  description: "개발자, 창업자의 작업 기록.",
+  description: "Notes from a developer and entrepreneur.",
   metadataBase: new URL("https://seo-hnoo.me"),
   alternates: {
     types: {
