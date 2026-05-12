@@ -27,7 +27,7 @@ export default function RootLayout({
         <div className="mx-auto max-w-[680px] px-6 py-12">
           <header className="mb-16 flex items-center justify-between">
             <Link href="/" className="text-base font-medium">
-              Seo Hnoo
+              Hyunwoo Seo
             </Link>
             <nav className="text-sm">
               <Link href="/about" className="hover:underline">
