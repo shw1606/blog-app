@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "sync-content": "node scripts/sync-content-assets.mjs",
+    "publish-content": "bash scripts/publish-content.sh",
     "dev:next": "next dev",
     "dev:watch": "node scripts/dev-watch.mjs",
     "dev": "pnpm sync-content && concurrently --kill-others --names \"next,watch\" --prefix-colors \"cyan,green\" \"pnpm dev:next\" \"pnpm dev:watch\"",

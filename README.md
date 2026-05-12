@@ -41,3 +41,13 @@ pnpm dev
 ```
 
 If `../blog-content` exists as a sibling clone, the dev server reads from it directly and live-reloads on edits there.
+
+## Publishing new content
+
+After pushing to `blog-content`, bump this repo's submodule pointer so Vercel rebuilds against the latest commit:
+
+```bash
+pnpm publish-content
+```
+
+That fetches `blog-content`'s `main` HEAD, commits the new pointer here, and pushes. No-op if already up to date.
