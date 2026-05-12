@@ -20,10 +20,10 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>Seo Hnoo</title>
+    <title>Hyunwoo Seo</title>
     <link>${SITE_URL}</link>
-    <description>개발자, 창업자의 작업 기록</description>
-    <language>ko</language>
+    <description>Notes from a developer and entrepreneur.</description>
+    <language>en</language>
     ${rssItems}
   </channel>
 </rss>`;

@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
+    <html lang="en">
       <body className="font-sans">
         <div className="mx-auto max-w-[680px] px-6 py-12">
           <header className="mb-16 flex items-center justify-between">

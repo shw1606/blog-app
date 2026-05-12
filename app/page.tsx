@@ -9,7 +9,7 @@ export default function Home() {
     <div>
       <section className="mb-12">
         <p className="text-base text-neutral-700 leading-relaxed">
-          개발자, 창업자. 작업하면서 배운 것을 기록합니다.
+          Developer and entrepreneur. Notes on what I learn while building.
         </p>
       </section>
       <section>
