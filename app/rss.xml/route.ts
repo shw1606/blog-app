@@ -3,7 +3,8 @@ import { getAllPosts } from "@/lib/posts";
 const SITE_URL = "https://seo-hnoo.me";
 
 export async function GET() {
-  const posts = getAllPosts();
+  // Drafts are never syndicated, even in local dev.
+  const posts = getAllPosts().filter((post) => !post.draft);
   const rssItems = posts
     .map(
       (post) => `

@@ -1,10 +1,14 @@
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
+import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { remarkYouTube } from "@/lib/remark-youtube";
+import { YouTube } from "@/components/youtube";
 
 export async function generateStaticParams() {
-  return getAllPostSlugs().map((slug) => ({ slug }));
+  // Gate-aware: drafts are included only in local dev, never prerendered
+  // in a production build.
+  return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -34,12 +38,17 @@ export default async function PostPage({
     <article>
       <header className="mb-10">
         <div className="text-sm text-neutral-500 mb-2">
-          {format(new Date(post.date), "yyyy.MM.dd")}
+          {format(new Date(post.date), "yyyy.MM.dd")} · {post.readingTime} min
+          read
         </div>
         <h1 className="text-2xl font-semibold leading-tight">{post.title}</h1>
       </header>
       <div className="prose prose-neutral max-w-none">
-        <MDXRemote source={post.content} />
+        <MDXRemote
+          source={post.content}
+          components={{ YouTube }}
+          options={{ mdxOptions: { remarkPlugins: [remarkYouTube] } }}
+        />
       </div>
     </article>
   );

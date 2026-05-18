@@ -43,9 +43,12 @@ async function trigger() {
   }
 }
 
+// drafts/ is watched too: in dev we preview drafts, so edits to a draft
+// (or its images) must trigger a refresh / asset re-sync just like
+// published posts.
 const watcher = chokidar.watch(CONTENT_DIR, {
   ignored: (file) =>
-    /(\/|^)(\.git|\.obsidian|node_modules|drafts)(\/|$)/.test(file),
+    /(\/|^)(\.git|\.obsidian|node_modules)(\/|$)/.test(file),
   ignoreInitial: true,
   persistent: true,
 });
