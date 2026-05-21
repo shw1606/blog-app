@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
-import { remarkYouTube } from "@/lib/remark-youtube";
-import { YouTube } from "@/components/youtube";
+import { mdxComponents } from "@/components/mdx";
+import { mdxOptions } from "@/lib/mdx-options";
 
 export async function generateStaticParams() {
   // Gate-aware: drafts are included only in local dev, never prerendered
@@ -46,8 +46,8 @@ export default async function PostPage({
       <div className="prose prose-neutral max-w-none">
         <MDXRemote
           source={post.content}
-          components={{ YouTube }}
-          options={{ mdxOptions: { remarkPlugins: [remarkYouTube] } }}
+          components={mdxComponents}
+          options={mdxOptions}
         />
       </div>
     </article>

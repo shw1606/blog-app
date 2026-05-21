@@ -58,6 +58,104 @@ body {
   clear: left;
 }
 
+/* The typography plugin wraps blockquote text in curly quotation marks
+   via ::before/::after. Drop them — the left border is enough. */
+.prose blockquote {
+  font-style: normal;
+  font-weight: 400;
+}
+
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after {
+  content: none;
+}
+
+/* Fenced code blocks: a header bar (language label + copy button, see
+   components/code-block.tsx) above the Shiki-highlighted <pre>. Colors
+   track the `github-dark` Shiki theme. */
+.prose .code-block {
+  margin: 1.6em 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: #24292e;
+}
+
+.prose .code-block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.5rem 0.4rem 0.9rem;
+  background: #1f242b;
+  border-bottom: 1px solid #30363d;
+}
+
+.prose .code-block__lang {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: #8b949e;
+}
+
+.prose .code-block__copy {
+  font-size: 0.7rem;
+  color: #8b949e;
+  background: transparent;
+  border: 1px solid #30363d;
+  border-radius: 0.3rem;
+  padding: 0.15rem 0.55rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.prose .code-block__copy:hover {
+  color: #e6edf3;
+  border-color: #484f58;
+}
+
+/* The inner <pre> keeps Shiki's own background; just flatten the box so
+   it sits flush inside the rounded wrapper. */
+.prose .code-block pre {
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Headings link to themselves; the anchor reveals a `#` on hover. */
+.prose .heading-anchor {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+.prose .heading-anchor:hover::after {
+  content: " #";
+  color: #b0b0b0;
+}
+
+/* Mark external links with a small outbound arrow. */
+.prose a[target="_blank"]::after {
+  content: "↗";
+  margin-left: 0.1em;
+  font-size: 0.8em;
+  color: #888;
+}
+
+/* Let wide tables scroll instead of overflowing the column. */
+.prose .table-wrap {
+  margin: 1.6em 0;
+  overflow-x: auto;
+}
+
+.prose .table-wrap > table {
+  margin: 0;
+}
+
+.prose figcaption {
+  text-align: center;
+  font-size: 0.85em;
+  color: #888;
+}
+
 @media (max-width: 540px) {
   .prose > p:first-child:has(img) {
     float: none;
