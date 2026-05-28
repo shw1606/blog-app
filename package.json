@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@shikijs/rehype": "^4.1.0",
+    "@vercel/analytics": "^2.0.1",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "next": "16.2.5",
