@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Analytics } from "@vercel/analytics/next";
+import { AnalyticsWithExclusion } from "./analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -57,7 +57,7 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
-        <Analytics />
+        <AnalyticsWithExclusion />
       </body>
     </html>
   );
