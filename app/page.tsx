@@ -9,7 +9,7 @@ export default function Home() {
     <div>
       <section className="mb-12">
         <p className="text-base text-neutral-700 leading-relaxed">
-          Developer and entrepreneur. Notes on what I learn while building.
+          Entrepreneur and developer. Notes on what I learn while building.
         </p>
       </section>
       <section>
