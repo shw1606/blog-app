@@ -5,8 +5,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Hyunwoo Seo",
-    template: "%s — Hyunwoo Seo",
+    default: "Yule Seo",
+    template: "%s — Yule Seo",
   },
   description: "Notes from a developer and entrepreneur.",
   metadataBase: new URL("https://seo-hnoo.me"),
@@ -28,7 +28,7 @@ export default function RootLayout({
         <div className="mx-auto max-w-[680px] px-6 py-12">
           <header className="mb-16 flex items-center justify-between">
             <Link href="/" className="text-base font-medium">
-              Hyunwoo Seo
+              Yule Seo
             </Link>
             <nav className="text-sm">
               <Link href="/about" className="hover:underline">
@@ -53,6 +53,12 @@ export default function RootLayout({
                 className="hover:underline"
               >
                 LinkedIn
+              </a>
+              <a
+                href="https://www.threads.com/@yulebuilds"
+                className="hover:underline"
+              >
+                Threads
               </a>
             </div>
           </footer>

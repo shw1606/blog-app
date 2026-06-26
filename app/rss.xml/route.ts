@@ -21,7 +21,7 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>Hyunwoo Seo</title>
+    <title>Yule Seo</title>
     <link>${SITE_URL}</link>
     <description>Notes from a developer and entrepreneur.</description>
     <language>en</language>
