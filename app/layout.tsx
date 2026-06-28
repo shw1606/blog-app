@@ -30,6 +30,11 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
   },
+  verification: {
+    other: {
+      "naver-site-verification": "3047672aecf60642e45443dc6dbda3cd62ba9ea3",
+    },
+  },
 };
 
 export default function RootLayout({
