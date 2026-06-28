@@ -28,7 +28,9 @@ function parseTime(t: string): number | undefined {
   return total || undefined;
 }
 
-function parseYouTube(raw: string): { id: string; start?: number } | null {
+function parseYouTube(
+  raw: string,
+): { id: string; start?: number; shorts?: boolean } | null {
   let url: URL;
   try {
     url = new URL(raw.trim());
@@ -37,6 +39,7 @@ function parseYouTube(raw: string): { id: string; start?: number } | null {
   }
   const host = url.hostname.replace(/^(www\.|m\.)/, "");
   let id = "";
+  let shorts = false;
   if (host === "youtu.be") {
     id = url.pathname.slice(1).split("/")[0];
   } else if (host === "youtube.com" || host === "youtube-nocookie.com") {
@@ -48,11 +51,12 @@ function parseYouTube(raw: string): { id: string; start?: number } | null {
       url.pathname.startsWith("/live/")
     ) {
       id = url.pathname.split("/")[2] ?? "";
+      shorts = url.pathname.startsWith("/shorts/");
     }
   }
   if (!/^[\w-]{6,}$/.test(id)) return null;
   const t = url.searchParams.get("start") ?? url.searchParams.get("t");
-  return { id, start: t ? parseTime(t) : undefined };
+  return { id, start: t ? parseTime(t) : undefined, shorts: shorts || undefined };
 }
 
 function urlFromParagraph(node: MdNode): string | null {
@@ -68,7 +72,11 @@ function urlFromParagraph(node: MdNode): string | null {
   return null;
 }
 
-function toYouTubeElement(id: string, start?: number): MdNode {
+function toYouTubeElement(
+  id: string,
+  start?: number,
+  shorts?: boolean,
+): MdNode {
   const attributes: MdNode[] = [
     { type: "mdxJsxAttribute", name: "id", value: id },
   ];
@@ -77,6 +85,13 @@ function toYouTubeElement(id: string, start?: number): MdNode {
       type: "mdxJsxAttribute",
       name: "start",
       value: String(start),
+    });
+  }
+  if (shorts) {
+    attributes.push({
+      type: "mdxJsxAttribute",
+      name: "shorts",
+      value: "true",
     });
   }
   return {
@@ -94,7 +109,7 @@ function walk(node: MdNode): void {
     const raw = urlFromParagraph(child);
     if (raw) {
       const yt = parseYouTube(raw);
-      if (yt) return toYouTubeElement(yt.id, yt.start);
+      if (yt) return toYouTubeElement(yt.id, yt.start, yt.shorts);
     }
     walk(child);
     return child;
