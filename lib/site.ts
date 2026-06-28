@@ -1,6 +1,8 @@
 // Single source of truth for site-wide identity used by metadata,
 // structured data (JSON-LD), RSS, and OG image generation.
-export const SITE_URL = "https://seo-hnoo.me";
+// www is the primary domain on Vercel (apex 301-redirects to www), so
+// every canonical/OG/sitemap URL must be www to match.
+export const SITE_URL = "https://www.seo-hnoo.me";
 export const SITE_NAME = "Yule Seo";
 export const SITE_DESCRIPTION = "Notes from a developer and entrepreneur.";
 

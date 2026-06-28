@@ -1,6 +1,5 @@
 import { getAllPosts } from "@/lib/posts";
-
-const SITE_URL = "https://seo-hnoo.me";
+import { SITE_URL } from "@/lib/site";
 
 export async function GET() {
   // Drafts are never syndicated, even in local dev.
