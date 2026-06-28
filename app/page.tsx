@@ -1,12 +1,39 @@
 import Link from "next/link";
 import { format } from "date-fns";
 import { getAllPosts } from "@/lib/posts";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, AUTHOR } from "@/lib/site";
 
 export default function Home() {
   const posts = getAllPosts();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: SITE_NAME,
+        description: SITE_DESCRIPTION,
+        inLanguage: "ko",
+        publisher: { "@id": `${SITE_URL}/#person` },
+      },
+      {
+        "@type": "Person",
+        "@id": `${SITE_URL}/#person`,
+        name: AUTHOR.name,
+        url: AUTHOR.url,
+        sameAs: AUTHOR.sameAs,
+      },
+    ],
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="mb-12">
         <p className="text-base text-neutral-700 leading-relaxed">
           Entrepreneur and developer. Notes on what I learn while building.

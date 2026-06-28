@@ -1,19 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AnalyticsWithExclusion } from "./analytics";
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Yule Seo",
-    template: "%s · Yule Seo",
+    default: SITE_NAME,
+    template: `%s · ${SITE_NAME}`,
   },
-  description: "Notes from a developer and entrepreneur.",
-  metadataBase: new URL("https://seo-hnoo.me"),
+  description: SITE_DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
   alternates: {
+    canonical: "/",
     types: {
       "application/rss+xml": "/rss.xml",
     },
+  },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    locale: "ko_KR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
   },
 };
 
@@ -23,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className="font-sans">
         <div className="mx-auto max-w-[680px] px-6 py-12">
           <header className="mb-16 flex items-center justify-between">
